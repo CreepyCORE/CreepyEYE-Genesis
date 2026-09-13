@@ -10,7 +10,7 @@
 &nbsp;
 
 ## ⚠️ IMPORTANT!
-**CreepyEYE Genesis** is an OSINT (Open Source Intelligence) tool that helps you search information by username, email, IP, phone number, and other parameters across various services.  
+**CreepyEYE Genesis** is an OSINT (Open Source Intelligence) tool for username, email, IP, domain and phone lookups.  
 **Use only for ethical purposes! The developers are not responsible for your actions.**
 
 ---
@@ -25,7 +25,7 @@
 
 ## 🛠️ Features
 
-🔎 Username existence check across social media platforms:  
+🔎 Username lookup:  
 &nbsp;&nbsp;&nbsp;&nbsp;`GitHub`, `X`, `Instagram`, `TikTok`, `Facebook`, `GitLab`, `Bitbucket`, `Reddit`, `Twitch`, `Kaggle`, `Medium`, `SoundCloud`, `Spotify`
 
 📧 Email verification:  
@@ -33,15 +33,15 @@
 🌐 IP/domain lookup:  
 &nbsp;&nbsp;&nbsp;&nbsp;via `IPinfo`, `Shodan`, `AbuseIPDB`, `VirusTotal`, `GreyNoise`, `Whois`  
 📱 Phone numbers: `Numverify`  
-🧅 Tor support for anonymity  
+🧅 Tor routing  
 🈯 Language selection menu (`Ukrainian` / `English` / `Russian`)  
-🧾 Raw JSON output — toggled from the menu (option `9`), applies instantly  
-💾 Report export — save any scan as JSON into `reports/`  
+🧾 Raw JSON output (menu option `9`, no restart needed)  
+💾 Save scan results as JSON to `reports/`  
 ⚙️ Automatic dependency installation
 
 ---
 
-## Example Screenshots — Multilingual
+## Screenshots (EN / UA / RU)
 
 | Language | Windows | Linux |
 |----------|---------|-------|
@@ -87,11 +87,8 @@
 ## API Keys Setup
 
 API keys are stored in `settings/api/api_keys.env`.  
-Open it from the main menu — option **`6. API settings`**: the program creates the file from a
-template if it does not exist yet, opens it in your default editor, and then asks you to restart
-CreepyEYE so the new values are loaded. You can also edit the file by hand at any time.  
-The template placeholders (`your_shodan_api_key`, …) are treated as missing keys, so replace the
-ones you intend to use:
+Use **`6. API settings`** to edit the API keys. CreepyEYE creates `api_keys.env` from the template if it doesn't exist, opens it in the default editor and then prompts for a restart to load the new keys. The file can also be edited manually.  
+Template placeholders (`your_shodan_api_key`, …) are treated as unset. Supported variables:
 
 - SHODAN_API_KEY  
 - IPINFO_TOKEN  
@@ -103,7 +100,7 @@ ones you intend to use:
 - EMAILREP_API_KEY  
 - WHOIS_API_KEY  
 
-### Where to get API keys & their usage
+### Where to get the keys
 
 | Service        | API Key URL                               | Purpose                                           |
 |----------------|-------------------------------------------|--------------------------------------------------|
@@ -120,43 +117,35 @@ ones you intend to use:
 
 ---
 
-## Using Tor
+## Tor
 
-To increase anonymity, it’s recommended to run Tor (e.g., via Tor Browser or tor.exe).  
-The program automatically detects if Tor is running and uses it for requests.
+Start Tor Browser or tor.exe before launching CreepyEYE. If Tor is available, requests are routed through it.
 
 ---
 
 ## JSON Output
 
-Menu option **`9`** toggles raw JSON output (`JSON output: ON / OFF`). When it is ON, every module
-also prints the unmodified API response to the terminal, which is useful for debugging or for
-piping results somewhere else. The switch takes effect immediately — no restart — and it does not
-change what is written into saved reports.
+Menu option **`9`** toggles raw JSON output (`JSON output: ON / OFF`). When enabled, each module also prints the raw API response. Useful for debugging and piping module responses to other tools. Takes effect immediately and doesn't affect saved reports.
 
 ---
 
 ## Reports
 
-After every scan the program asks `Save full report? (y/n)`. Answer `y` and the result is written to:
+After each scan CreepyEYE prompts `Save full report? (y/n)`. On `y`, the report is written to:
 
 ```
 reports/<target>_<type>_<YYYYMMDD-HHMMSS>.json
 ```
 
-The file is UTF-8 JSON and holds the tool version, the target and its type, the UTC start/finish
-timestamps, whether the requests actually went through Tor, and the result of every module that ran.
-API keys are stripped from the data before it is written to disk.
+UTF-8 JSON with the tool version, target and target type, start/finish timestamps (UTC), whether requests were actually routed through Tor, and per-module results. API keys are stripped before writing.
 
-> ⚠️ `reports/` is listed in `.gitignore` on purpose — scan results contain information about your
-> target and must not end up in forks, pull requests or issues.
+> ⚠️ `reports/` is gitignored: reports contain target data. Don't commit them or attach them to issues/PRs.
 
 ---
 
-## Important Notice
+## Disclaimer
 
-This tool is intended for ethical OSINT only.  
-Use responsibly and within the law.
+For ethical OSINT only. Use it within the law.
 
 ---
 
@@ -166,26 +155,21 @@ Use responsibly and within the law.
 
 ---
 
-## 🧠 CreepyEYE PRO — out now 🎉
+## 🧠 CreepyEYE PRO
 
-**CreepyEYE PRO** is the premium edition of CreepyEYE — a desktop OSINT app for **Windows and Linux**
-with a **lifetime licence**: 37 integrations (bring your own API keys), scans by email, username,
-domain, phone, IP, name and photo EXIF, report export, proxy and Tor support, and up to 3 devices
-per key.
+**CreepyEYE PRO** is the paid desktop edition for **Windows and Linux** with a **lifetime licence**. 37 integrations (bring your own API keys); lookups by email, username, domain, phone, IP, name and photo EXIF; report export; proxy and Tor support. Up to 3 devices per key.
 
-📖 **For full information** — installation, activation, the full service list and the CLI reference —
-see **[github.com/CreepyHunterX/CreepyEYE-PRO](https://github.com/CreepyHunterX/CreepyEYE-PRO)**
+📖 Docs (installation, activation, service list, CLI reference): **[github.com/CreepyCORE/CreepyEYE-PRO](https://github.com/CreepyCORE/CreepyEYE-PRO)**
 
-🛒 **Get it at [creepycore.com](https://creepycore.com/store)**
+🛒 **Store: [creepycore.com](https://creepycore.com/store)**
 
-> ℹ️ CreepyEYE PRO is closed-source and commercial. This repository stays the free and open
-> **CreepyEYE Genesis** edition.
+> ℹ️ PRO is closed-source. This repository is the free, open-source **CreepyEYE Genesis**.
 
 ---
 
 ## 💸 Support CreepyEYE
 
-If you enjoy CreepyEYE and want to support its development, you can do so via:
+Donations fund new API integrations, UI/performance work and ongoing updates.
 
 ### ☕ Ko-fi
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F1F71KKMAH)
@@ -193,14 +177,12 @@ If you enjoy CreepyEYE and want to support its development, you can do so via:
 ### 💛 Buy Me a Coffee
 [<a href="https://www.buymeacoffee.com/CreepyHunterX" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>](https://buymeacoffee.com/CreepyHunterX)
 
-Your support helps us add new APIs, improve graphics and performance, and provide stable updates. 🙌
-
 ---
 
 ### Available translations / Доступні переклади / Доступные переводы
 
 - 🇺🇦 [Українська версія](./README_ua.md)
 - 🇷🇺 [Русская Версия](./README_ru.md)
-- 🇬🇧 English Version (This Translation)
+- 🇬🇧 English (current)
 
 ---
